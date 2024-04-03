@@ -88,7 +88,11 @@ The Mini-Amazon project effectively simulates an e-commerce and logistics enviro
 # Reference
 [1] ECE568 Course Project: Mini-Amazon / Mini-UPS. Tyler Bletsch
 https://people.duke.edu/~tkb13/.
+
 [2] Django Software Foundation. (2021). Django Documentation. Retrieved from https://docs.djangoproject.com/
+
 [3] Google. (2021). gRPC Documentation. Retrieved from https://grpc.io/docs/
+
 [4] PostgreSQL Global Development Group. (2021). PostgreSQL 13.3 Documentation. Retrieved from https://www.postgresql.org/docs/13/index.html
+
 [5] Protocol Buffers. (2021). Protocol Buffers Developer Guide. Retrieved from https://developers.google.com/protocol-buffers/docs/overview
