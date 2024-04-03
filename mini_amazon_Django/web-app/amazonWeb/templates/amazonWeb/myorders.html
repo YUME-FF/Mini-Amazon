@@ -1,0 +1,103 @@
+<style>
+    /* BASIC */
+
+    html {
+        background-color: #56baed;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+    }
+
+    a {
+        color: #92badd;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 400;
+    }
+
+    #center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid black;
+        padding: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 40px 8px 10px 8px;
+        color: #cccccc;
+    }
+
+    /* CARD */
+
+    .card {
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 20px;
+    }
+
+    .card-body {
+        padding: 30px;
+        text-align: left;
+    }
+
+    .card-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .card-text {
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        background-color: #92badd;
+        color: white;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        transition: background-color 0.5s;
+    }
+
+    .btn:hover {
+        background-color: #6c92badd;
+    }
+</style>
+{% extends 'main.html'%}
+
+{% block content %}
+<div class="container">
+    <h1 class="mt-3 mb-3">My Orders</h1>
+    {% if orderHistory %}
+    {% for order_ in orderHistory %}
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">Ship ID: {{ order_.shipID }}</h5>
+            <p class="card-text">
+                <strong>Product Name:</strong> {{ order_.productDescription }}<br>
+                <strong>Product Quantity:</strong> {{ order_.order.productCount }}<br>
+                <strong>Status:</strong> {{ order_.status }}<br>
+                <strong>Delivery Location:</strong> ({{ order_.locationX }},{{ order_.locationY }})<br>
+                <strong>Truck ID:</strong> {{ order_.truckID }}<br>
+            </p>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>You haven't ordered any product yet!</p>
+    <a class="btn" href="{% url 'UserHome' %}">Browse products</a>
+    {% endif %}
+</div>
+{% endblock content %}

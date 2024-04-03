@@ -1,0 +1,78 @@
+<style>
+    /* BASIC */
+
+    html {
+        background-color: #56baed;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+    }
+
+    a {
+        color: #92badd;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 400;
+    }
+
+    #center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid black;
+        padding: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 40px 8px 10px 8px;
+        color: #cccccc;
+    }
+</style>
+{%extends 'main.html'%}
+{%block content%}
+<article class="media content-section">
+    <div class="media-body">
+        <div class="article-metadata">
+            <p class="mr-2">User: <strong>{{ user.username }}</strong></p>
+        </div>
+        <p class="mr-2"><strong>Profile:</strong><a class="ml-2" href="{% url 'editProfile' %}">Edit
+                profile</a></p>
+        <p>Email: {{ user.email }}</p>
+        <p class="mr-2"><strong>Delivery Profile:</strong>
+            {% if useraccount_initialized %}
+            <a class="ml-2" href="{% url 'editDeliveryProfile' %}">Edit Delivery Profile</a>
+            {% else %}
+            <a class="ml-2" href="{% url 'editDeliveryProfile' %}">Input phone, card, and ups username</a>
+            {% endif %}
+        </p>
+        {% if useraccount_initialized %}
+        <p>Phone: {{ useraccount.phone }}</p>
+        <p>Credit card: {{ useraccount.cardInfo }}</p>
+        {% endif %}
+        <p class="mr-2"><strong>Addresses:</strong></p>
+        {% if addresses %}
+        {% for address in addresses %}
+        <article class="media content-section">
+            <div class="media-body">
+                <div class="article-metadata">
+                    <p class="mr-2"><strong>{{ address.addressName }}</strong></p>
+                </div>
+                <p>Location: ({{ address.address_x }},{{ address.address_y }})</p>
+                <a class="ml-2" href="{% url 'editDeliveryAddress' %}">edit Address</a>
+            </div>
+        </article>
+
+        {% endfor %}
+        <a class="ml-2" href="{% url 'addDeliveryAddress' %}">Add a new Address</a>
+        {% else %}
+        <a class="ml-2" href="{% url 'addDeliveryAddress' %}">Add a new Address</a>
+        {% endif %}
+    </div>
+</article>
+{%endblock%}

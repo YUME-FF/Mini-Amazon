@@ -1,0 +1,24 @@
+<style>
+    .center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid black;
+        padding: 10px;
+    }
+</style>
+{%extends 'main.html'%}
+
+{%block content%}
+
+<div class="center">
+    <form method="POST" action="">
+        {%csrf_token%}
+        <label>Username:</label>
+        <input type="text" name="username" placeholder="Enter username" />
+        <label>Passowrd:</label>
+        <input type="password" name="password" placeholder="Enter password" />
+        <input type="submit" value="login">
+    </form>
+</div>
+
+{%endblock%}

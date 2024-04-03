@@ -1,0 +1,76 @@
+<style>
+    /* BASIC */
+
+    html {
+        background-color: #56baed;
+    }
+
+    body {
+        font-family: "Poppins", sans-serif;
+        height: 100vh;
+    }
+
+    a {
+        color: #92badd;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: 400;
+    }
+
+    .center {
+        margin: auto;
+        width: 60%;
+        border: 3px solid black;
+        padding: 10px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        text-transform: uppercase;
+        display: inline-block;
+        margin: 40px 8px 10px 8px;
+        color: #cccccc;
+    }
+</style>
+{%extends 'main.html'%}
+
+{%block content%}
+
+{% if page == 'login' %}
+
+<div class="center">
+    <form method="POST" action="">
+        {%csrf_token%}
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Username</label>
+            <input type="text" name="username" placeholder="Enter username" class="form-control" id="exampleInputEmail1"
+                aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your username with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Password</label>
+            <input type="password" name="password" placeholder="Enter password" class="form-control"
+                id="exampleInputPassword1">
+        </div>
+        <button type="submit" value="login" class="btn btn-primary">Submit</button>
+    </form>
+    <p>Haven't signed up yet?</p>
+    <a href="{% url 'createAccount' %}">Sign up</a>
+</div>
+
+{% else %}
+
+<div class="center">
+    <form method="POST" action="">
+        {%csrf_token%}
+        {{form.as_p}}
+        <input type="submit" value="register">
+    </form>
+    <p>Already signed up?</p>
+    <a href="{% url 'login' %}">Log in</a>
+</div>
+
+{% endif %}
+{%endblock%}
