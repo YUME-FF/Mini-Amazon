@@ -2,7 +2,7 @@
 
 Our project, Mini-Amazon, is a simulated e-commerce and delivery platform designed to mirror the complex interactions of online shopping and logistics. Built with Django for the web interface and Java for backend operations, it showcases the integration of these components with real-time updates facilitated by Protocol Buffers and PostgreSQL. This educational model provides insight into the seamless coordination required for modern digital marketplaces and lays the groundwork for further exploration into efficient system design.
 
-![](/img/miniproj.png)
+<img src='img/miniproj.png' width='250'>
 Figure.1. Bare Minimum Functionality Diagram[1]
 
 
@@ -41,11 +41,9 @@ Then you can go to ./mini_amazon/ to run the java backend code.
 + Design for scalability and real-time user updates.
 
 # Methods
-![](/img/world_amazon.svg) 
-Figure.2. Amazon and World Simulator Interaction 
+<img src='img/world_amazon.svg' width='300px'><img src='img/ups_amazon.svg' width='300px'>
 
-![](/img/ups_amazon.svg)
-Figure.3. UPS and Amazon Communication Protocol
+Fig.2. Amazon and World Simulator Interaction    Fig.3. UPS and Amazon Communication Protocol
 
 
 + Web Application: The Django framework was chosen for its maturity and comprehensive features to create a responsive web interface.
@@ -55,23 +53,13 @@ Figure.3. UPS and Amazon Communication Protocol
 
 # System Design
 ![](/img/mermaid-diagram-2024-04-02-183407.png)
+
 Figure.4. System Interaction Flowchart: From Order Placement to Delivery
 
 # Web Application Interface
-![](/img/login.png)
-Figure.5. Home page
-
-![](/img/login2.png)
-Figure.6. Login page
-
-![](/img/profile.png)
-Figure.7. Profile page
-
-![](/img/mainpage.png)
-Figure.8. Main page
-
-![](/img/order.png)
-Figure.9. Order history  page
+<img src='img/login.png' width='400px'><img src='img/login2.png' width='400px'>
+<img src='img/profile.png' width='400px'><img src='img/mainpage.png' width='400px'>
+<img src='img/order.png' width='400px'>
 
 # System Evaluation
 ![](/img/analysis.png)
