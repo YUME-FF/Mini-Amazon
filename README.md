@@ -54,8 +54,6 @@ Fig.2. Amazon and World Simulator Interaction    Fig.3. UPS and Amazon Communica
 # System Design
 ![](/img/mermaid-diagram-2024-04-02-183407.png)
 
-Figure.4. System Interaction Flowchart: From Order Placement to Delivery
-
 # Web Application Interface
 <img src='img/login.png' width='400px'><img src='img/login2.png' width='400px'>
 <img src='img/profile.png' width='400px'><img src='img/mainpage.png' width='400px'>
@@ -63,7 +61,7 @@ Figure.4. System Interaction Flowchart: From Order Placement to Delivery
 
 # System Evaluation
 ![](/img/analysis.png)
-Figure.10. System Performance Metrics: Transaction Processing, Scalability, Consistency, and Reliability
+System Performance Metrics: Transaction Processing, Scalability, Consistency, and Reliability
 
 + Transaction Processing Efficiency: The average transaction time maintains at about 1.5 seconds, with minimum times around 1.2 seconds and peaks just under 2 seconds. These figures reflect a capable processing speed, though peak times indicate occasional delays that may be optimized.
 + Scalability Dynamics: Latency incrementally rises from 1 to 2 seconds as the user count increases to 100. This steady increase, rather than a sharp spike, suggests the system scales adequately, but highlights a potential for performance improvement at higher user loads.
