@@ -1,0 +1,140 @@
+/*UPS connect with Amazon in the same World*/
+syntax = "proto2";
+message UAConnect{
+  // An optional field for the world ID that UPS must connect to in Amazon's world.
+  optional int64 worldid = 1;
+}
+
+message AUConnected{
+  // The ID of the world that UPS must successfully connect to.
+  required int64 worldid = 1;
+  // The result of the connection attempt, whether successful or not.
+  required string result = 2; //success!
+}
+
+message AUProduct{
+  // The unique identifier of the product.
+  required int64 id = 1;
+  // A description of the product.
+  required string description = 2;
+  // The quantity of the product.
+  required int32 count = 3;
+	// dest x, y
+	required int32 destX = 4;
+	required int32 destY = 5;
+	required int32 userid = 6;
+}
+
+
+message AURequestSendUserInfo{
+  required int32 userid = 1;
+	required string username = 2;
+	required string password = 3;
+	required int64 seqnum = 4;
+}
+
+message AUCallTruck{
+  // A repeated field of products that must be delivered by UPS.
+  repeated AUProduct things = 1;
+  // The ID of the warehouse where the products are located.
+  required int32 whid = 2;
+  // A unique sequence number for the request.
+  required int64 seqnum = 3;
+	// add x
+  required int32 wh_x = 4;
+  // add y
+  required int32 wh_y = 5;
+}
+
+message UATruckArrived{
+  // The unique identifier of the truck that has arrived.
+  required int32 truckid = 1;
+  // The unique identifier of the package that has been delivered.
+  // A unique sequence number for the delivery.
+  required int64 seqnum = 2;
+	// need to be discussed
+  required int32 x = 3;
+  required int32 y = 4;
+}
+
+/*start loading*/
+message AUTruckGoLoad{
+  required int32 truckid = 1;
+  required int64 seqnum = 2;
+}
+
+/*all packages loaded finished, start to deliver*/
+message AUTruckGoDeliver{
+  // The unique identifier of the truck that must deliver the packages.
+  required int32 truckid = 1;
+  // A unique sequence number for the request.
+  required int64 seqnum = 2;
+}
+
+/*deliver made*/
+message UATruckDeliverMade{
+  required int32 truckid = 1;
+  required int64 packageid = 2;
+  required int64 seqnum = 3;
+}
+
+message AURequestPackageStatus{
+  // The unique identifier of the shipment for which UPS must request the package status.
+  required int64 shipid = 1;
+  // A unique sequence number for the request.
+  required int64 seqnum = 2;
+}
+
+/*Query the UTruck, delivered or not, the location of current package*/
+message UAUpdatePackageStatus{
+  // The unique identifier of the package for which the status is being updated.
+  required int64 packageid = 1;
+  // The status of the package that must be provided.
+  required string status = 2;
+  // The x-coordinate of the package's location.
+  required int32 x = 3;
+  // The y-coordinate of the package's location.
+  required int32 y = 4;
+  // A unique sequence number for the request.
+  required int64 seqnum = 5;
+}
+
+message Err{
+  // A description of the error that has occurred, which may help to identify the issue.
+  required string err = 1;
+  // The sequence number of the original message that caused the error, which must be provided.
+  required int64 originseqnum = 2;
+  // A unique sequence number for the error.
+  required int64 seqnum = 3;
+}
+
+message AUCommands{
+  // A repeated field of requests to call trucks, which must be provided.
+  repeated AUCallTruck callTruck = 1;
+  // A repeated field of requests to send trucks for delivery, which must be provided.
+  repeated AUTruckGoDeliver truckGoDeliver = 2;
+  // A repeated field of requests to check the status of packages, which must be provided.
+  repeated AURequestPackageStatus requestPackageStatus = 3;
+	repeated AURequestSendUserInfo userInfo = 4;
+	repeated AUTruckGoLoad loading = 5;
+// An optional field indicating that UPS may want to disconnect from Amazon's world.
+  optional bool disconnect = 6;
+  // A repeated field of errors that may occur during the requests.
+  repeated Err err = 7;
+  // A repeated field of unique sequence numbers for the request acknowledgements.
+  repeated int64 acks = 8;
+}
+
+message UACommands{
+  // A repeated field of notifications indicating that a truck has arrived at its delivery location, which must be provided.
+  repeated UATruckArrived truckArrived = 1;
+  // A repeated field of notifications indicating the status of packages has been updated, which must be provided.
+  repeated UAUpdatePackageStatus updatePackageStatus = 2;
+	repeated UATruckDeliverMade delivered = 3;  
+// An optional field indicating that all deliveries have been completed, which may be provided.
+  optional bool finished = 4;
+  // A repeated field of errors that may occur during the requests.
+  repeated Err error = 5;
+  // A repeated field of unique sequence numbers for the request acknowledgements.
+  repeated int64 acks = 6;
+}
